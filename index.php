@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Registration Forn</title>
+        <title>Registration Form</title>
         <link rel="icon" type="image/png" href="images/logo.png"/>
         <link rel="stylesheet" href="./style/index.css" />
     </head>
@@ -8,7 +8,7 @@
 
     <?php include("header.php"); ?>
 
-    <form class="form_container">
+    <form class="form_container" method="post" enctype="multipart/form-data">
         <div>
             <label for="name">Full Name:</label>
             <input type="text" name="name" id="name" />
@@ -48,6 +48,11 @@
         <button type="submit">Submit</button>
     </form>
 
-    <?php include("footer.php"); ?>
+    <?php include("footer.php"); 
+    
+    include($_SERVER['DOCUMENT_ROOT']."/Web-Based-project/veiw/Veiw.php");
+    $veiw = new Veiw();
+    $veiw->Upload();
+    ?>
     </body>
 </html>
