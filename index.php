@@ -20,6 +20,7 @@
         <div>
             <label for="birthdate">Birth Date:</label>
             <input type="date" name="birthdate" id="birthdate" />
+            <button class="button btn--one">Check</button>
         </div>
         <div>
             <label for="phone">Phone Number:</label>
@@ -45,7 +46,7 @@
             <label for="email">Email:</label>
             <input type="email" name="email" id="email" />
         </div>
-        <button type="submit">Submit</button>
+        <button class="button main">Submit</button>
     </form>
 
     <?php include("footer.php"); ?>

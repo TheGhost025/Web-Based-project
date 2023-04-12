@@ -75,18 +75,26 @@ form label {
             box-sizing: border-box;
   }
 
-button {
+.button {
     width: 100%;
     margin-top: 12px;
     color: var(--gold);
     border-radius: 5px;
-    background-color:rgb(107, 0, 128);
+    
     border: none;
     outline: none;
     padding: 12px;
     font-weight: bold;
     transition: 250ms ease;
     cursor: pointer;
+}
+
+.btn--one{
+  background-color:rgb(107, 0, 128);
+}
+
+.main{
+  background-color:rgb(107, 0, 128);
 }
 
 button:hover {
