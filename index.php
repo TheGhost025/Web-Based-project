@@ -3,6 +3,8 @@
         <title>Registration Form</title>
         <link rel="icon" type="image/png" href="images/logo.png"/>
         <link rel="stylesheet" href="./style/index.css" />
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+  	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
     </head>
     <body style="margin:0px;">
 
@@ -50,7 +52,7 @@
     </form>
 
     <?php include("footer.php"); 
-    
+    include("DB_Ops.php");
     include($_SERVER['DOCUMENT_ROOT']."/Web-Based-project/veiw/Veiw.php");
     $veiw = new Veiw();
     $veiw->Upload();
