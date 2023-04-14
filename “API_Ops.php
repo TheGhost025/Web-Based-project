@@ -27,7 +27,7 @@ if ($err) {
 } else {
 	echo $response;
 }
-
+?>
 
 <?php
 $servername = "localhost";
