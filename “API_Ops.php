@@ -2,6 +2,7 @@
 function RetrieveActorsList($month, $day)
 {
     $curl = curl_init();
+
     curl_setopt_array($curl, [
         CURLOPT_URL => "https://online-movie-database.p.rapidapi.com/actors/list-born-today?month=" . $month . "&day=" . $day,
         CURLOPT_RETURNTRANSFER => true,
@@ -13,10 +14,11 @@ function RetrieveActorsList($month, $day)
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => [
             "X-RapidAPI-Host: online-movie-database.p.rapidapi.com",
-            'X-RapidAPI-Key: 47c3e17948msh0cec7a2604f6080p1396a7jsn13c3b413e8d2',
+            'X-RapidAPI-Key: 2c791edfa8mshf8975378654b6fbp17e9e9jsn951f21451e32',
         ],
     ]);
-    $response = curl_exec($curl);
+
+	$response = curl_exec($curl);
     $err = curl_error($curl);
 
     curl_close($curl);
@@ -30,16 +32,19 @@ function RetrieveActorsList($month, $day)
 
 function getActorsBio($month, $day)
 {
-    $data = json_decode(RetrieveActorsList($month, $day), true);//response of RetrieveActorsList 
+    $result = json_decode(RetrieveActorsList($month, $day), true);//response of RetrieveActorsList 
     $actorsArray = [];
-
-    foreach ($data as $value) {
-        $actorsArray[] = substr($value, 6, 9);
-    }
-
     $actorsNames = [];
+	
+	if ($result !=null) {
+		foreach ($result as $value) {
+			$actorsArray[] = $value;
+		}
+	} else {
+		echo "0 results";
+	}
 
-    for ($i = 0; $i < count($actorsArray); $i++) {
+    for ($i = 0; $i < sizeof($actorsArray); $i++) {
         $curl = curl_init();
 
         curl_setopt_array($curl, [
@@ -53,28 +58,19 @@ function getActorsBio($month, $day)
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => [
                 "X-RapidAPI-Host: online-movie-database.p.rapidapi.com",
-                'X-RapidAPI-Key: 47c3e17948msh0cec7a2604f6080p1396a7jsn13c3b413e8d2',
+                'X-RapidAPI-Key: 2c791edfa8mshf8975378654b6fbp17e9e9jsn951f21451e32',
             ],
         ]);
         $response = curl_exec($curl);
-        // Convert the JSON response into a PHP object or associative array
         $actorsdata = json_decode($response, true);
-
-        // Access the name property of the object or array
-        $name = $actorsdata['name'];
-
-        $actorsNames[] = $name;
-
+        $actorName = $actorsdata['name'];
+        $actorsArray[] = $actorName;
         curl_close($curl);
-
     }
-
     $actorsdata = array(
-        "Actors' names" => $actorsNames
+        "Name: " => $actorsArray
     );
-
     echo json_encode($actorsdata);
-
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {

@@ -22,9 +22,10 @@
             <label for="username" class="form-label">UserName</label>
         </div>
         <div class="form-floating mb-3">
+
             <input type="date" name="birthdate" id="birthdate" class="form-control"/>
             <label for="birthdate" class="form-label">Birth Date</label>
-            <button class="button btn--one">Check</button>
+            <button onclick="getActorsBio()" class="button btn--one">Check</button>
         </div>
         <div class="form-floating mb-3">
             <input type="tel" name="phone" id="phone" class="form-control" placeholder="tel"/>
