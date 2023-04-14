@@ -11,7 +11,7 @@ to {
 }
   }
 
-@keyframes apear {
+@keyframes appear {
     from {
         opacity: 0;
 }
@@ -27,7 +27,7 @@ body {
 
 .header_container {
     background-color: rgb(107, 0, 128);
-    color: black;
+    color: white;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
