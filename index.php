@@ -68,22 +68,47 @@
         xhr.onload = function() {
         if (xhr.status === 200) {
             var response = JSON.parse(xhr.responseText);
-            console.log(response.success);
             if (response.success) {
                 $('#name').addClass('is-valid');
                 $('#username').addClass('is-valid');
                 $('#phone').addClass('is-valid');
+                $('#birthdate').addClass('is-valid');
                 $('#address').addClass('is-valid');
                 $('#password').addClass('is-valid');
                 $('#conf_pass').addClass('is-valid');
                 $('#image').addClass('is-valid');
                 $('#email').addClass('is-valid');
                 
-                <?php
-                include($_SERVER['DOCUMENT_ROOT']."/Web-Based-project/veiw/Veiw.php");
-                $veiw = new Veiw();
-                $veiw->connect();
-                ?>
+                var xh = new XMLHttpRequest();
+                xh.open('POST', 'model/DB_Ops.php');
+                xh.onload = function() {
+                if (xh.status === 200) {
+                    var response = JSON.parse(xh.responseText);
+                    if (response.success) {
+                        if(response.message === "Registered successfully"){
+                            Swal.fire({
+                                title: 'Success',
+                                text: response.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            })
+                        }
+                        else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            })
+                        }
+                        
+                    } else {
+                        alert('Username already exists,choose another username.')
+                    }
+                }
+        };
+        
+                xh.send(new FormData(document.getElementById("form")));
             } else {
                 if(response.errorfeild.includes("name")){
                     $(document).ready(function() {
@@ -191,6 +216,11 @@
         
         xhr.send(new FormData(document.getElementById("form")));
 });
+<?php 
+include($_SERVER['DOCUMENT_ROOT']."/Web-Based-project/veiw/Veiw.php");
+$view = new Veiw();
+$view->connect();
+?>
     </script>
     </body>
 </html>
