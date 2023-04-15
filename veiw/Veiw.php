@@ -3,9 +3,9 @@
 include($_SERVER['DOCUMENT_ROOT']."/Web-Based-project/controller/Controller.php");
 
 Class Veiw {
-    function Upload(){
+    function connect(){
         $upload = new Controller();
-        $upload->map_to_upload();
+        $upload->connect_to_database();
     }
 }
 
