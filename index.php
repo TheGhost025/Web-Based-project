@@ -27,7 +27,8 @@
 
             <input type="date" name="birthdate" id="birthdate" class="form-control"/>
             <label for="birthdate" class="form-label">Birth Date</label>
-            <input type="submit" class="button btn--one" name="check" value="Check" />
+            <input type="birthdate" class="button btn--one" name="check" value="Check" />
+            <button class="button btn--one" type="birthdate" onclick="getActorsBio(birthdate)">Check</button>
 
         </div>
         <div class="form-floating mb-3">
@@ -216,6 +217,48 @@
         
         xhr.send(new FormData(document.getElementById("form")));
 });
+
+
+
+
+//AJAX for API
+document.getElementById("form").addEventListener('birthdate', function(e2) {
+        e2.preventDefault(); 
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'API_Ops.php');
+        xhr.onload = function() {
+        if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                var xh = new XMLHttpRequest();
+                let birthdateList = document.getElementById("birthdate").value;
+                
+                let date = new Date(birthdateList);
+                let day = date.getDate();
+                let month = date.getMonth() + 1;
+
+                if(birthdateList =="")
+                    return;
+                console.log(month);
+
+                xh.onload = function() {
+                if (xh.status === 200) {
+                    var response = JSON.parse(xh.responseText);  
+                    let actorsArr = response["Names "];
+                    for (let i = 0; i < actorsArr.length; i++) {
+                        let temp =actorsArr[i];
+                        birthdateList.appendChild(temp);
+                }
+            };
+                xh.send(new FormData(document.getElementById("form")));
+            }
+        }
+        };
+    }
+});
+
+
 <?php 
 include($_SERVER['DOCUMENT_ROOT']."/Web-Based-project/veiw/Veiw.php");
 $view = new Veiw();
@@ -224,3 +267,5 @@ $view->connect();
     </script>
     </body>
 </html>
+
+

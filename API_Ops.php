@@ -46,9 +46,10 @@ function getActorsBio($month, $day)
 		}
 	} else {
 		echo "0 results";
-	}
+	}        
 
-    for ($i = 0; $i < sizeof($actorsArray); $i++) {
+
+    for ($i = 0; $i < $actorsArray.length; $i++) {
         $curl = curl_init();
 
         curl_setopt_array($curl, [
