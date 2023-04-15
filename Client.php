@@ -1,5 +1,6 @@
 <?php 
 $errorfeild= array();
+
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     if(!((isset($_POST["name"])) &&  !empty($_POST["name"]))){
         $errorfeild[]="name";
@@ -10,9 +11,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     if(!((isset($_POST["birthdate"])) &&  !empty($_POST["birthdate"]))){
         $errorfeild[]="birthdate";
     }
+    
     if(!((isset($_POST["phone"])) &&  !empty($_POST["phone"])) && !(preg_match('/^[0-9]{11}+$/', $_POST["phone"]))){
         $errorfeild[]="phone";
     }
+
     if(!((isset($_POST["address"])) &&  !empty($_POST["address"]))){
         $errorfeild[]="address";
     }
