@@ -1,5 +1,5 @@
 <?php
-function RetrieveActorsList($month, $day)
+function getactors($month, $day)
 {
     $curl = curl_init();
 
@@ -32,7 +32,7 @@ function RetrieveActorsList($month, $day)
 
 function getActorsBio($month, $day)
 {
-    $result = json_decode(RetrieveActorsList($month, $day), true);//response of RetrieveActorsList 
+    $result = json_decode(getactors($month, $day), true);//response of getactors 
     $actorsArray = [];
     $actorsNames = [];
 	
@@ -72,6 +72,7 @@ function getActorsBio($month, $day)
     );
     echo json_encode($actorsdata);
 }
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $month = $_GET['month'];
