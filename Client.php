@@ -28,5 +28,15 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     if(!((isset($_POST["email"])) &&  !empty($_POST["email"]) && !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))){
         $errorfeild[]="email";
     }
+
+    if (!empty($errorfeild)) {
+        // return error messages
+        header('Content-Type: application/json');
+        echo json_encode(array('success' => false, 'errorfeild' => $errorfeild));
+        exit;
+}
+
+    echo json_encode(array('success' => true));
+    exit;
 }
 ?>

@@ -11,206 +11,184 @@
     </head>
     <body style="margin:0px;">
 
-    <?php include("header.php"); 
-     include("Client.php");
-    ?>
+    <?php include("header.php"); ?>
+
+    
 
     <form class="mb-3 form_container" id="form" method="post" enctype="multipart/form-data">
         <div class="form-floating mb-3">
             <input type="text" name="name" id="name" class="form-control" placeholder="text"/>
             <label for="name" class="form-label">Full Name</label>
-            <?php 
-                if(in_array("name",$errorfeild)){
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#name').addClass('is-invlaid');
-                      });
-                    </script>";
-                }
-                else{
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#name').addClass('is-vlaid');
-                      });
-                    </script>";
-                }
-            ?>
         </div>
         <div class="form-floating mb-3">
             <input type="text" name="username" id="username" class="form-control" placeholder="text"/>
             <label for="username" class="form-label">UserName</label>
-            <?php 
-                if(in_array("username",$errorfeild)){
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#username').addClass('is-invlaid');
-                      });
-                    </script>";
-                }
-                else{
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#username').addClass('is-vlaid');
-                      });
-                    </script>";
-                }
-                ?>
         </div>
         <div class="form-floating mb-3">
 
             <input type="date" name="birthdate" id="birthdate" class="form-control"/>
             <label for="birthdate" class="form-label">Birth Date</label>
-            <?php 
-                if(in_array("birthdate",$errorfeild)){
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#birthdate').addClass('is-invlaid');
-                      });
-                    </script>";
-                }
-                else{
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#birthdate').addClass('is-vlaid');
-                      });
-                    </script>";
-                }
-                ?>
             <input type="submit" class="button btn--one" name="check" value="Check" />
         </div>
         <div class="form-floating mb-3">
             <input type="tel" name="phone" id="phone" class="form-control" placeholder="tel"/>
             <label for="phone" class="form-label">Phone Number</label>
-            <?php 
-                if(in_array("phone",$errorfeild)){
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#phone').addClass('is-invlaid');
-                      });
-                    </script>";
-                }
-                else{
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#phone').addClass('is-vlaid');
-                      });
-                    </script>";
-                }
-                ?>
         </div>
         <div class="form-floating mb-3">
             <input type="text" name="address" id="address" class="form-control" placeholder="text"/>
             <label for="address" class="form-label">Address</label>
-            <?php 
-                if(in_array("address",$errorfeild)){
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#address').addClass('is-invlaid');
-                      });
-                    </script>";
-                }
-                else{
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#address').addClass('is-vlaid');
-                      });
-                    </script>";
-                }
-                ?>
         </div>
         <div class="form-floating mb-3">
             <input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
             <label for="password">Password</label>
-            <?php
-            if(in_array("password",$errorfeild)){
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#password').addClass('is-invlaid');
-                      });
-                    </script>";
-                }
-                else{
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#password').addClass('is-vlaid');
-                      });
-                    </script>";
-                }
-                ?>
         </div>
         <div class="form-floating mb-3">
             <input type="password" name="conf_pass" id="conf_pass" class="form-control" placeholder="Password"/>
             <label for="conf_pass" class="form-label">Confirm Password</label>
-            <?php
-            if(in_array("conf_pass",$errorfeild)){
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#conf_pass').addClass('is-invlaid');
-                      });
-                    </script>";
-                }
-                else{
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#conf_pass').addClass('is-vlaid');
-                      });
-                    </script>";
-                }
-                ?>
         </div>
         <div class="form-floating mb-3">
             <input type="file" name="image" id="image" class="form-control" placeholder="Image"/>
             <label for="image" class="form-label">Upload Image</label>
-            <?php
-            if(in_array("image",$errorfeild)){
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#image').addClass('is-invlaid');
-                      });
-                    </script>";
-                }
-                else{
-                    echo "<script>
-                    $(document).ready(function() {
-                        $('#image').addClass('is-vlaid');
-                      });
-                    </script>";
-                }
-                ?>
         </div>
         <div class="form-floating mb-3">
             <input type="email" name="email" id="email" class="form-control" placeholder="name@example.com"/>
             <label for="email" class="form-label">Email</label>
-            <?php
-            if(in_array("email",$errorfeild)){
-                    echo "<script>
+        </div>
+        <button class="button main" type="submit">Submit</button>
+    </form>
+
+    <?php include("footer.php"); ?>
+
+    <script>
+        document.getElementById("form").addEventListener('submit', function(e) {
+        e.preventDefault(); 
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'Client.php');
+        xhr.onload = function() {
+        if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            console.log(response.success);
+            if (response.success) {
+                $('#name').addClass('is-valid');
+                $('#username').addClass('is-valid');
+                $('#phone').addClass('is-valid');
+                $('#address').addClass('is-valid');
+                $('#password').addClass('is-valid');
+                $('#conf_pass').addClass('is-valid');
+                $('#image').addClass('is-valid');
+                $('#email').addClass('is-valid');
+                
+                <?php
+                include($_SERVER['DOCUMENT_ROOT']."/Web-Based-project/veiw/Veiw.php");
+                $veiw = new Veiw();
+                $veiw->connect();
+                ?>
+            } else {
+                if(response.errorfeild.includes("name")){
                     $(document).ready(function() {
-                        $('#email').addClass('is-invlaid');
+                        $('#name').addClass('is-invalid');
                       });
-                    </script>";
                 }
                 else{
-                    echo "<script>
                     $(document).ready(function() {
-                        $('#email').addClass('is-vlaid');
+                        $("#name").addClass("is-valid");
                       });
-                    </script>";
                 }
-                ?>
-        </div>
-        <button class="button main">Submit</button>
-    </form>
-    <script>
-        document.getElementById("form").addEventListener('click', function(e) {
-        e.preventDefault(); 
+
+                if(response.errorfeild.includes("username")){
+                    $(document).ready(function() {
+                        $('#username').addClass('is-invalid');
+                      });
+                }
+                else{
+                    $(document).ready(function() {
+                        $('#username').addClass('is-vlaid');
+                      });
+                }
+
+                if(response.errorfeild.includes("birthdate")){
+                    $(document).ready(function() {
+                        $('#birthdate').addClass('is-invalid');
+                      });
+                }
+                else{
+                    $(document).ready(function() {
+                        $('#birthdate').addClass('is-valid');
+                      });
+                }
+
+                if(response.errorfeild.includes("phone")){
+                    $(document).ready(function() {
+                        $('#phone').addClass('is-invalid');
+                      });
+                }
+                else{
+                    $(document).ready(function() {
+                        $('#phone').addClass('is-valid');
+                      });
+                }
+
+                if(response.errorfeild.includes("address")){
+                    $(document).ready(function() {
+                        $('#address').addClass('is-invalid');
+                      });
+                }
+                else{
+                    $(document).ready(function() {
+                        $('#address').addClass('is-valid');
+                      });
+                }
+
+                if(response.errorfeild.includes("password")){
+                    $(document).ready(function() {
+                        $('#password').addClass('is-invalid');
+                      });
+                }
+                else{
+                    $(document).ready(function() {
+                        $('#password').addClass('is-valid');
+                      });
+                }
+
+                if(response.errorfeild.includes("conf_pass")){
+                    $(document).ready(function() {
+                        $('#conf_pass').addClass('is-invalid');
+                      });
+                }
+                else{
+                    $(document).ready(function() {
+                        $('#conf_pass').addClass('is-valid');
+                      });
+                }
+
+                if(response.errorfeild.includes("image")){
+                    $(document).ready(function() {
+                        $('#image').addClass('is-invalid');
+                      });
+                }
+                else{
+                    $(document).ready(function() {
+                        $('#image').addClass('is-valid');
+                      });
+                }
+
+                if(response.errorfeild.includes("email")){
+                    $(document).ready(function() {
+                        $('#email').addClass('is-invalid');
+                      });
+                }
+                else{
+                    $(document).ready(function() {
+                        $('#email').addClass('is-valid');
+                      });
+                }
+            }
+        }
+        };
+        
+        xhr.send(new FormData(document.getElementById("form")));
 });
     </script>
-    <?php include("footer.php"); 
-    if(!$errorfeild){
-        include($_SERVER['DOCUMENT_ROOT']."/Web-Based-project/veiw/Veiw.php");
-        $veiw = new Veiw();
-        $veiw->connect();
-    }
-    ?>
     </body>
 </html>
