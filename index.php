@@ -25,7 +25,7 @@
 
             <input type="date" name="birthdate" id="birthdate" class="form-control"/>
             <label for="birthdate" class="form-label">Birth Date</label>
-            <button onclick="getActorsBio()" class="button btn--one">Check</button>
+            <input type="submit" class="button btn--one" name="check" value="Check" />
         </div>
         <div class="form-floating mb-3">
             <input type="tel" name="phone" id="phone" class="form-control" placeholder="tel"/>
@@ -54,11 +54,15 @@
         <button class="button main">Submit</button>
     </form>
 
-    <?php include("footer.php"); 
-    include("DB_Ops.php");
+    <?php include("footer.php");
+    include("API_Ops.php");
+    $date = strtotime($_POST['birthdate']);
+    if(isset($_POST['check'])) {
+        getActorsBio((int)date('m',$date), (int)date('d',$date));
+    }
     include($_SERVER['DOCUMENT_ROOT']."/Web-Based-project/veiw/Veiw.php");
     $veiw = new Veiw();
-    $veiw->Upload();
+    $veiw->connect();
     ?>
     </body>
 </html>

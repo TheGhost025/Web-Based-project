@@ -97,7 +97,7 @@ form label {
   background-color:rgb(107, 0, 128);
 }
 
-button:hover {
+.button:hover {
     background-color: rgb(255, 51, 0);
 }
 

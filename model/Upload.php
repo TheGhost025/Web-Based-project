@@ -21,7 +21,7 @@ Class Upload_Image{
             move_uploaded_file($this->tmpName,"$this->uploadDir/$this->image");
         }
         else{
-            exit;
+            exit();
         }
     }
 }
