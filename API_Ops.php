@@ -85,3 +85,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     getActorsBio($month, $day);
 }
 ?>
+
+
+
