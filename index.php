@@ -27,8 +27,7 @@
 
             <input type="date" name="birthdate" id="birthdate" class="form-control"/>
             <label for="birthdate" class="form-label">Birth Date</label>
-            <input type="birthdate" class="button btn--one" name="check" value="Check" />
-            <button class="button btn--one" type="birthdate" onclick="getActorsBio(birthdate)">Check</button>
+            <button class="button btn--one" type="button">Check</button>
 
         </div>
         <div class="form-floating mb-3">
@@ -61,7 +60,7 @@
     <?php include("footer.php"); ?>
 
     <script>
-        document.getElementById("form").addEventListener('submit', function(e) {
+        document.getElementById("form").addEventListener('button', function(e) {
         e.preventDefault(); 
 
         var xhr = new XMLHttpRequest();
@@ -220,38 +219,54 @@
 
 
 
-
 //AJAX for API
-document.getElementById("form").addEventListener('birthdate', function(e2) {
+
+    document.getElementById("form").addEventListener('reset', function(e2) {
         e2.preventDefault(); 
 
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'API_Ops.php');
+        xhr.open('POST', 'API_Ops.php',true);
+
+        let birthdate = document.getElementById("birthdate").value;
+        if(birthdate!=""){
+            $.ajax({
+            url: 'DB_Ops.php',
+            method: 'POST',
+            data: formD,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+            // handle the server response
+            console.log(response);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+            // handle the AJAX error
+            console.error(textStatus + ': ' + errorThrown);
+            }
+          });
+
         xhr.onload = function() {
         if (xhr.status === 200) {
             var response = JSON.parse(xhr.responseText);
             if (response.success) {
-                var xh = new XMLHttpRequest();
-                let birthdateList = document.getElementById("birthdate").value;
-                
-                let date = new Date(birthdateList);
+                let date = new Date(birthdate);
                 let day = date.getDate();
                 let month = date.getMonth() + 1;
 
-                if(birthdateList =="")
+                if(birthdate =="")
                     return;
                 console.log(month);
 
-                xh.onload = function() {
-                if (xh.status === 200) {
-                    var response = JSON.parse(xh.responseText);  
-                    let actorsArr = response["Names "];
+                xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);  
+                    let actorsArr = response["Names"];
                     for (let i = 0; i < actorsArr.length; i++) {
                         let temp =actorsArr[i];
-                        birthdateList.appendChild(temp);
+                        birthdate.appendChild(temp);
                 }
             };
-                xh.send(new FormData(document.getElementById("form")));
+            xhr.send(new FormData(document.getElementById("form")));
             }
         }
         };
