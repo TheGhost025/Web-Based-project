@@ -3,10 +3,6 @@ function getactors($month, $day)
 {
     $curl = curl_init();
 
-    $certificate = "C:\wamp64\cacert.pem";
-    curl_setopt($curl, CURLOPT_CAINFO, $certificate);
-    curl_setopt($curl, CURLOPT_CAPATH, $certificate);
-
 curl_setopt_array($curl, [
 	CURLOPT_URL => "https://online-movie-database.p.rapidapi.com/actors/list-born-today?month=".$month."&day=".$day,
 	CURLOPT_RETURNTRANSFER => true,
@@ -49,7 +45,7 @@ function getActorsBio($month, $day)
 	}        
 
 
-    for ($i = 0; $i < $actorsArray.length; $i++) {
+    for ($i = 0; $i < sizeof($actorsArray); $i++) {
         $curl = curl_init();
 
         curl_setopt_array($curl, [
@@ -73,7 +69,7 @@ function getActorsBio($month, $day)
         curl_close($curl);
     }
     $actorsdata = array(
-        "Name: " => $actorsArray
+        "Names" => $actorsArray
     );
     echo json_encode($actorsdata);
 }

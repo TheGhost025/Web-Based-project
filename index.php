@@ -13,6 +13,8 @@
 
     <?php include("header.php"); ?>
 
+    <script src="api.js"></script>
+
 
     <form class="mb-3 form_container" id="form" method="post" enctype="multipart/form-data">
         <div class="form-floating mb-3">
@@ -27,7 +29,8 @@
 
             <input type="date" name="birthdate" id="birthdate" class="form-control"/>
             <label for="birthdate" class="form-label">Birth Date</label>
-            <button class="button btn--one" type="button">Check</button>
+            <input type="birthdate" class="button btn--one" name="check" value="Check" />
+            <button class="button btn--one" type="birthdate" onclick="getActorsBio(birthdate)">Check</button>
 
         </div>
         <div class="form-floating mb-3">
@@ -60,7 +63,7 @@
     <?php include("footer.php"); ?>
 
     <script>
-        document.getElementById("form").addEventListener('button', function(e) {
+        document.getElementById("form").addEventListener('submit', function(e) {
         e.preventDefault(); 
 
         var xhr = new XMLHttpRequest();
@@ -220,8 +223,7 @@
 
 
 //AJAX for API
-
-    document.getElementById("form").addEventListener('reset', function(e2) {
+document.getElementById("form").addEventListener('birthdate', function(e2) {
         e2.preventDefault(); 
 
         var xhr = new XMLHttpRequest();
@@ -249,7 +251,10 @@
         if (xhr.status === 200) {
             var response = JSON.parse(xhr.responseText);
             if (response.success) {
-                let date = new Date(birthdate);
+                var xh = new XMLHttpRequest();
+                let birthdateList = document.getElementById("birthdate").value;
+                
+                let date = new Date(birthdateList);
                 let day = date.getDate();
                 let month = date.getMonth() + 1;
 
@@ -257,18 +262,17 @@
                     return;
                 console.log(month);
 
-                xhr.onload = function() {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);  
-                    let actorsArr = response["Names"];
+                xh.onload = function() {
+                if (xh.status === 200) {
+                    var response = JSON.parse(xh.responseText);  
+                    let actorsArr = response["Names "];
                     for (let i = 0; i < actorsArr.length; i++) {
                         let temp =actorsArr[i];
                         birthdate.appendChild(temp);
                 }
             };
-            xhr.send(new FormData(document.getElementById("form")));
+                xh.send(new FormData(document.getElementById("form")));
             }
-        }
         };
     }
 });
