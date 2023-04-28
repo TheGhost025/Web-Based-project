@@ -19,7 +19,7 @@ function getActors(date){
     };
     xhr.open('GET', 'https://online-movie-database.p.rapidapi.com/actors/list-born-today?month='+month+'&day='+day);
     xhr.setRequestHeader('x-rapidapi-host', 'online-movie-database.p.rapidapi.com');
-    xhr.setRequestHeader('x-rapidapi-key', '7300644fe6msh574fad380378bc8p142737jsnf2724f714e42');
+    xhr.setRequestHeader('x-rapidapi-key', '6136c892damshcac1ccc48b8f2e6p19f063jsnb724904d189a');
     xhr.send();
 }
 
@@ -33,11 +33,15 @@ async function getBio(response){
             if (this.status === 200) {
                 var response = JSON.parse(xh.responseText);
                 console.log(response["name"]);
+                const node = document.createElement("p");
+                const textnode = document.createTextNode(response["name"]);
+                node.appendChild(textnode);
+                document.getElementById("actors").appendChild(node);
             }
         }
         });
         xh.open("GET", "https://online-movie-database.p.rapidapi.com/actors/get-bio?nconst="+response[res].substring(6,15));
-        xh.setRequestHeader("X-RapidAPI-Key", "7300644fe6msh574fad380378bc8p142737jsnf2724f714e42");
+        xh.setRequestHeader("X-RapidAPI-Key", "6136c892damshcac1ccc48b8f2e6p19f063jsnb724904d189a");
         xh.setRequestHeader("X-RapidAPI-Host", "online-movie-database.p.rapidapi.com");
 
         xh.send();
