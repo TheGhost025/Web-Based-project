@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "rapidapi-sdk": "^1.0.3",
-    "xmlhttprequest": "^1.8.0"
-  }
-}
