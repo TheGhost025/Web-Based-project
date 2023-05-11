@@ -1,8 +1,14 @@
 
-    <form class="mb-3 form_container" id="form" method="post" enctype="multipart/form-data">
+
+    <form action="submit-form" class="mb-3 form_container" id="form" method="post" enctype="multipart/form-data">
+        @csrf
         <div class="form-floating mb-3">
             <input type="text" name="name" id="name" class="form-control" placeholder="text"/>
             <label for="name" class="form-label">Full Name</label>
+            @error('name')
+                <div>{{ $message }}</div>
+            @enderror
+
         </div>
         <div class="form-floating mb-3">
             <input type="text" name="username" id="username" class="form-control" placeholder="text"/>

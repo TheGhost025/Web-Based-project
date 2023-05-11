@@ -3,30 +3,20 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 
-Route::get('/', [PagesController::class, 'index']);
-
-
-Route::get('/RegForm', function () {
-    return view('RegistrationForm');
+//Route::get('/', [PagesController::class, 'index']);
+Route::get('/', function () {
+    return view('welcome');
 });
 
+Route::get('/submit-form', [PagesController::class, 'index']);
+Route::post('/submit-form', [PagesController::class, 'index']);
 
-//Route::get('user/{id}','User@showProfile');
-//Route::post('/Users',[User::class,'display']);
-//Route::view('/login','Users', ['uname' => '', 'upass'=>'']);
+//Route::get('/Check', function () {
+//    return view('welcome');
+//})->name(valid);
+
+//Route::post('check', [Validation::class, 'registValid'])->name('Pages.index');
 
 
-//Route::POST('Users',[User::class , 'showProfile']);
-//Route::view('login', 'Users');
-
-Route::get('/myfirstview', function () {
-    return view('Master');
-});
-
-Route::pattern('name', '[0-9]+');
-Route::get('profile/{name}', function($name)
-{
-return 'Hey there '. $name.' ! Welcome to whatsapp !';
-});
-
+//Route::get('check', [Validation::class, 'registValid'])->name('regist.Valid');
 

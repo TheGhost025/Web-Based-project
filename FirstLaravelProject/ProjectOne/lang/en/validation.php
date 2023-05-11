@@ -2,16 +2,15 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Validation Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines contain the default error messages used by
-    | the validator class. Some of these rules have multiple versions such
-    | as the size rules. Feel free to tweak each of these messages here.
-    |
-    */
+    'name' => 'The name field is required.',
+    'username' => 'The username field must be a valid.',
+    'birthdate' => 'The birthdate field must be a valid data.',
+    'phone' => 'The phone field must be a valid.',
+    'address' => 'The address field must be a valid.',
+    'password' => 'The password field is required and must be at least 8 characters.',
+    'conf_pass' => 'The conf_pass confirmation must match the password',
+    'image' => 'The image field must be a valid image.',
+    'email' => 'The email field must be a valid email.',
 
     'accepted' => 'The :attribute must be accepted.',
     'accepted_if' => 'The :attribute must be accepted when :other is :value.',

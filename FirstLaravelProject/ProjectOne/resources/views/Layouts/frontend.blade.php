@@ -21,7 +21,7 @@
 
         </div>
         <script src="{{ asset('frontend/js/jquery-3.6.4.min.js') }}"></script>
-        <script src="{{ asset('frontend/js/bootstrap5') }}"></script>
+        <!--<script src="{ { asset('frontend/js/bootstrap5') }}"></script>-->
 
     </body>
 </html>
