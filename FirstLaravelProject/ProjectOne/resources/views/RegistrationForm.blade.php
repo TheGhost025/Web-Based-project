@@ -34,7 +34,9 @@
                 <div class="form-floating mb-3">
                     <input type="date" name="birthdate" id="birthdate" class="form-control"/>
                     <label for="birthdate" class="form-label">Birth Date</label>
-                    <div id="actors"></div>
+                    @foreach ($data1 as $name)
+                        <p>{{ $name['name']  }}</p>
+                    @endforeach
                     <button class="button btn--one" type="button" id="button">Check</button>
                 </div>
 
@@ -59,11 +61,6 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="file" name="image" id="image" class="form-control" placeholder="Image"/>
-                    <label for="image" class="form-label">Upload Image</label>
-                </div>
-
-                <div class="form-floating mb-3">
                     <input type="email" name="email" id="email" class="form-control" placeholder="name@example.com"/>
                     <label for="email" class="form-label">Email</label>
                 </div>
@@ -72,4 +69,18 @@
         </form>
         @show
     </body>
+
+    <script>
+    $(document).ready(function() {
+        $('#button').click(function() {
+            $.ajax({
+                url: "{{ route('rapidapi.getdata' , ['date' => "+ $('#birthdate').value +"]) }}",
+                type: "GET",
+                success: function(data) {
+                    $('#actors').append(data);
+                }
+            });
+        });
+    });
+</script>
 </html>

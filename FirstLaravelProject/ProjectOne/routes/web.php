@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\RapidAPIController;
 
 //Route::get('/', [PagesController::class, 'index']);
 Route::get('/', function () {
@@ -10,6 +11,8 @@ Route::get('/', function () {
 
 Route::get('/submit-form', [PagesController::class, 'index']);
 Route::post('/submit-form', [PagesController::class, 'index']);
+
+Route::get('/rapidapi/{date}', [RapidAPIController::class, 'getActor'])->name('rapidapi.getdata');
 
 //Route::get('/Check', function () {
 //    return view('welcome');
