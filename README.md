@@ -9,7 +9,7 @@ A web page that inserts user data into MySQL database using useful features of L
 
 ✅Upload the user image.
 
-✅It checks actors born in the same day using a THIRD PARTY MDBI API “https://rapidapi.com/apidojo/api/imdb8/” which show the list with actor’s names born on the same day.
+✅It checks actors born in the same day using a THIRD PARTY MDBI API “https://rapidapi.com/apidojo/api/online-movie-database/” which show the list with actor’s names born on the same day.
 
 ✅The form includes sending an automatic email when a new user is registered from admin to the System's EMAIL (ammodi9@gmial.com) supported with the message “A new user <username> is registered to the 
   system and title 'New registered use'. [USING MAILGUN THIRD PARTY]
