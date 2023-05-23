@@ -1,9 +1,5 @@
     <form class="mb-3 form_container" id="form" method="post" enctype="multipart/form-data">
         @csrf
-        <p style="text-align: left;">
-            <a href="{{ route('LangChange','en') }}">EN</a>
-            <a href="{{ route('LangChange','ar') }}">AR</a>
-        </p>
 
         <div class="form-floating mb-3">
             <input type="text" name="name" id="name" class="form-control" placeholder="text"/>
@@ -14,7 +10,7 @@
         <div class="form-floating mb-3">
             <input type="text" name="user_name" id="username" class="form-control" placeholder="text"/>
             <label for="user_name" class="form-label">{{__('MYlang.UserName')}}</label>
-            <span class="text-danger error-text username_error"></span>
+            <span class="text-danger error-text user_name_error"></span>
         </div>
 
         <div class="form-floating mb-3">

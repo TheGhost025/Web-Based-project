@@ -1,6 +1,0 @@
-{
-    "require": {
-        "symfony/mailgun-mailer": "^6.2",
-        "symfony/http-client": "^6.2"
-    }
-}
